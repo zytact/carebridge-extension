@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Carebridge Proctoring Bridge",
+  "version": "1.0.0",
+  "description": "Reports open browser URLs to the Carebridge desktop proctoring app.",
+  "permissions": ["tabs", "alarms", "notifications"],
+  "host_permissions": ["http://127.0.0.1/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Carebridge Proctoring"
+  }
+}
