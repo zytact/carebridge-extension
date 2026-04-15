@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "AI Interview Guard",
+  "version": "0.1.0",
+  "description": "Enforces browser tab lockdown during AI interview sessions.",
+  "permissions": ["tabs", "storage"],
+  "host_permissions": [
+    "http://localhost:5173/*",
+    "http://127.0.0.1:5173/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "AI Interview Guard",
+    "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://localhost:5173/*",
+        "http://127.0.0.1:5173/*",
+        "https://*/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
